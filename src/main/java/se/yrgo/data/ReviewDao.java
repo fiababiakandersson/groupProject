@@ -8,9 +8,9 @@ import se.yrgo.exception.*;
 public interface ReviewDao {
     public List<Review> allReviews();
 
-    public void create(Review review);
+    public void createReview(Review review);
 
-    public void delete(int id);
+    public void deleteReview(int id);
 
     public void updateReviewById(int id, Review review) throws ReviewNotFoundException;
 

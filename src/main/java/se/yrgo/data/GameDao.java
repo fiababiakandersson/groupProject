@@ -8,5 +8,5 @@ import se.yrgo.exception.*;
 public interface GameDao {
     public List<Game> allGames();
 
-    public Game findById(int id) throws GameNotFoundException;
+    public Game findGameById(int id) throws GameNotFoundException;
 }
