@@ -1,8 +1,8 @@
-package se.yrgo.test;
+package se.yrgo.client;
 
 import jakarta.persistence.*;
 
-public class HibernateTest {
+public class Client {
 	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("databaseConfig");
 
 	public static void main(String[] args) {

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+    WARING THESE ARE JUST EXAMPLES, NEED TO BE REWORKED
+    
+    DataSources
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+                        destroy-method="close">
+	 <property name= "driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name= "url" value 
+="jdbc:hsqldb:file:database.dat;shutdown=true" />
+		<property name = "username" value="sa"/>
+		<property name="password" value ="" />
+	</bean>
+	
+	<!-- Templates -->
+	<bean id="jdbcTemplate" 
+             class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+	
+	<!-- Dao beans -->
+	<bean id="bookDao" class="se.yrgo.spring.data.BookDaoSpringJdbcImpl"
+                        init-method="createTables">
+		<constructor-arg ref="jdbcTemplate">
+		</constructor-arg>
+	</bean>
+
+	<bean id="bookService" 
+               class="se.yrgo.spring.services.BookServiceProductionImpl">
+		<constructor-arg ref="bookDao">
+		</constructor-arg>
+	</bean>
+	
+	<bean id="accountsService" 
+          class="se.yrgo.spring.services.AccountsServiceMockImpl"/>
+	
+	<bean id="purchasingService" class= 
+               "se.yrgo.spring.services.PurchasingServiceImpl">
+		<constructor-arg ref = "bookService"/>
+		<constructor-arg ref = "accountsService" />
+	</bean>
+	
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> -->
+
+</beans>
