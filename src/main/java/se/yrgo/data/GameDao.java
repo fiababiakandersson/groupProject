@@ -1,0 +1,12 @@
+package se.yrgo.data;
+
+import java.util.*;
+
+import se.yrgo.domain.*;
+import se.yrgo.exception.*;
+
+public interface GameDao {
+    public List<Game> allGames();
+
+    public Game findById(int id) throws GameNotFoundException;
+}
