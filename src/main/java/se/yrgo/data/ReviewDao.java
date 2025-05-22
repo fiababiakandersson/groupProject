@@ -10,7 +10,7 @@ public interface ReviewDao {
 
     public void createReview(Review review);
 
-    public void deleteReview(int id);
+    public void deleteReview(Review review);
 
     public void updateReviewById(int id, Review review) throws ReviewNotFoundException;
 

@@ -17,26 +17,29 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     // review dao
     @Override
     public List<Review> allReviews() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'allReviews'");
+        return em.createQuery("select review from Review as review", Review.class).getResultList();
     }
 
     @Override
-    public void createReview(Review review) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createReview'");
+    public void createReview(Review newReview) {
+        em.persist(newReview);
     }
 
     @Override
-    public void deleteReview(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteReview'");
+    public void deleteReview(Review review) {
+        Review book = em.find(Review.class, review.getId());
+        em.remove(book);
     }
 
     @Override
     public void updateReviewById(int id, Review review) throws ReviewNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateReviewById'");
+        Review existingReview = em.find(Review.class, id);
+        if (existingReview == null) {
+            throw new ReviewNotFoundException();
+        }
+
+        existingReview.setRating(review.getRating());
+        existingReview.setComment(review.getComment());
     }
 
     // game dao
@@ -48,7 +51,8 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     @Override
     public Game findGameById(int id) throws GameNotFoundException {
         try {
-            return (Game) em.createQuery("select game from Game as game where game.id=:id").setParameter("id", id);
+            return (Game) em.createQuery("select game from Game as game where game.id=:id").setParameter("id", id)
+                    .getSingleResult();
         } catch (javax.persistence.NoResultException e) {
             throw new GameNotFoundException();
         }
@@ -57,8 +61,12 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     // user dao
     @Override
     public User findUserById(int id) throws UserNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUserById'");
+        try {
+            return (User) em.createQuery("select user from User as user where user.id=:id").setParameter("id", id)
+                    .getSingleResult();
+        } catch (javax.persistence.NoResultException e) {
+            throw new UserNotFoundException();
+        }
     }
 
 }
