@@ -60,9 +60,9 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
 
     // user dao
     @Override
-    public User findUserById(int id) throws UserNotFoundException {
+    public AppUser findUserById(int id) throws UserNotFoundException {
         try {
-            return (User) em.createQuery("select user from User as user where user.id=:id").setParameter("id", id)
+            return (AppUser) em.createQuery("select user from User as user where user.id=:id").setParameter("id", id)
                     .getSingleResult();
         } catch (javax.persistence.NoResultException e) {
             throw new UserNotFoundException();

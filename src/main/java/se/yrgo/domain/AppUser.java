@@ -5,7 +5,7 @@ import java.util.*;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class User {
     @JoinTable(name = "user_game_library", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> library = new HashSet<>();
 
-    public User() {
+    public AppUser() {
 
     }
 
-    public User(String username, String email, String password, Set<Review> reviews, Set<Game> library) {
+    public AppUser(String username, String email, String password, Set<Review> reviews, Set<Game> library) {
         this.username = username;
         this.email = email;
         this.password = password;

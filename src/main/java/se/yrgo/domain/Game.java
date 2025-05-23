@@ -19,13 +19,13 @@ public class Game {
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToMany(mappedBy = "library")
-    private Set<User> users = new HashSet<>();
+    private Set<AppUser> users = new HashSet<>();
 
     public Game() {
 
     }
 
-    public Game(String title, String genre, String developer, Set<Review> reviews, Set<User> users) {
+    public Game(String title, String genre, String developer, Set<Review> reviews, Set<AppUser> users) {
         this.title = title;
         this.genre = genre;
         this.developer = developer;
@@ -73,11 +73,11 @@ public class Game {
         this.reviews = reviews;
     }
 
-    public Set<User> getUsers() {
+    public Set<AppUser> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(Set<AppUser> users) {
         this.users = users;
     }
 }

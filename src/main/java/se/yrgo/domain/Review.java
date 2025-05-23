@@ -12,11 +12,11 @@ public class Review {
     private int rating; // 1 to 5
     private String comment;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private AppUser user;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
@@ -24,7 +24,7 @@ public class Review {
 
     }
 
-    public Review(int rating, String comment, User user, Game game) {
+    public Review(int rating, String comment, AppUser user, Game game) {
         this.rating = rating;
         this.comment = comment;
         this.user = user;
@@ -55,11 +55,11 @@ public class Review {
         this.comment = comment;
     }
 
-    public User getUser() {
+    public AppUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(AppUser user) {
         this.user = user;
     }
 

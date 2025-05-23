@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(int id) throws UserNotFoundException {
+    public AppUser getUserById(int id) throws UserNotFoundException {
         try {
             return userDao.findUserById(id);
         } catch (Exception e) {
