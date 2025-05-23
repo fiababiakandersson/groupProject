@@ -1,5 +1,7 @@
 package se.yrgo.client;
 
+import java.util.*;
+
 import jakarta.persistence.*;
 import se.yrgo.domain.*;
 
@@ -9,6 +11,8 @@ public class Client {
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
+
+        createTestData(tx, em);
 
         // menu options:
         // 1. show all games
@@ -24,44 +28,48 @@ public class Client {
         // CustomerDaoImpl: DaoJpaImpl.java
         // CustomerDao-interface: GameDao.java
 
-        // while (true) {
+        while (true) {
 
-        // System.out.println("Welcome to Gamereview.com:");
-        // System.out.println("[1] Show all games");
-        // System.out.println("[2] Show game details");
-        // System.out.println("[3] Write a review");
-        // System.out.println("[4] Remove a review");
-        // System.out.println("[5] Update a review");
+            System.out.println("Welcome to Gamereview.com:");
+            System.out.println("[1] Show all games");
+            System.out.println("[2] Show game details");
+            System.out.println("[3] Write a review");
+            System.out.println("[4] Remove a review");
+            System.out.println("[5] Update a review");
 
-        // Scanner input = new Scanner(System.in);
-        // try {
-        // int pick = input.nextInt();
+            Scanner input = new Scanner(System.in);
+            try {
+                int pick = input.nextInt();
 
-        // switch (pick) {
-        // case 1:
-        // System.out.println("[1]");
-        // break;
-        // case 2:
-        // System.out.println("[2]");
-        // break;
-        // case 3:
-        // System.out.println("[3]");
-        // break;
-        // case 4:
-        // System.out.println("[4]");
-        // break;
-        // case 0: {
-        // break;
-        // }
-        // default:
-        // System.out.println("Ogiltigt val");
+                switch (pick) {
+                    case 1:
+                        System.out.println("[1]");
+                        break;
+                    case 2:
+                        System.out.println("[2]");
+                        break;
+                    case 3:
+                        System.out.println("[3]");
+                        break;
+                    case 4:
+                        System.out.println("[4]");
+                        break;
+                    case 0: {
+                        break;
+                    }
+                    default:
+                        System.out.println("Ogiltigt val");
 
-        // }
+                }
 
-        // } catch (InputMismatchException ex) {
-        // System.err.println("Pick one of the options presented");
-        // }
+            } catch (InputMismatchException ex) {
+                System.err.println("Pick one of the options presented");
+            }
+        }
 
+    }
+
+    private static void createTestData(EntityTransaction tx, EntityManager em) {
         try {
             tx.begin();
 
