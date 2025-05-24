@@ -11,11 +11,9 @@ import se.yrgo.exception.*;
 
 @Repository
 public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
-    private EntityManager em;
 
-    public DaoJpaImpl(EntityManager em) {
-        this.em = em;
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     // review dao
     @Override
@@ -25,34 +23,23 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
 
     @Override
     public void createReview(Review newReview) {
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
         em.persist(newReview);
-        tx.commit();
     }
 
     @Override
     public void deleteReview(Review review) {
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        Review toDelete = em.find(Review.class, review.getId());
+       Review toDelete = em.find(Review.class, review.getId());
         if (toDelete != null)
             em.remove(toDelete);
-        tx.commit();
     }
 
     @Override
     public void updateReviewById(int id, Review review) throws ReviewNotFoundException {
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
         Review existing = em.find(Review.class, id);
-        if (existing == null) {
-            tx.rollback();
+        if (existing == null)
             throw new ReviewNotFoundException();
-        }
         existing.setRating(review.getRating());
         existing.setComment(review.getComment());
-        tx.commit();
     }
 
     // game dao
