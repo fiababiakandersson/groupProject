@@ -2,17 +2,76 @@ package se.yrgo.client;
 
 import java.util.*;
 
-import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.context.annotation.*;
+import org.springframework.stereotype.*;
+
+import se.yrgo.data.*;
 import se.yrgo.domain.*;
 
+@Component
 public class Client {
-    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("databaseConfig");
+    // public static EntityManagerFactory emf =
+    // Persistence.createEntityManagerFactory("databaseConfig");
 
-    public static void main(String[] args) {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+    private final DaoJpaImpl dao;
 
-        createTestData(tx, em);
+    @Autowired
+    public Client(DaoJpaImpl dao) {
+        this.dao = dao;
+    }
+
+    public void run() {
+        try {
+            // create users
+            AppUser user1 = new AppUser();
+            user1.setUsername("gamer123");
+            user1.setEmail("gamer123@example.com");
+            user1.setPassword("securepass");
+
+            AppUser user2 = new AppUser();
+            user2.setUsername("proplayer");
+            user2.setEmail("proplayer@example.com");
+            user2.setPassword("propass");
+
+            // create games
+            Game game1 = new Game();
+            game1.setTitle("Space Battle");
+            game1.setGenre("Action");
+            game1.setDeveloper("Galactic Games");
+
+            Game game2 = new Game();
+            game2.setTitle("Mystic Quest");
+            game2.setGenre("RPG");
+            game2.setDeveloper("Fantasy Forge");
+
+            // add games to users' libraries
+            user1.getLibrary().add(game1);
+            user1.getLibrary().add(game2);
+            user2.getLibrary().add(game2);
+
+            game1.getUsers().add(user1);
+            game2.getUsers().add(user1);
+            game2.getUsers().add(user2);
+
+            // create reviews
+            Review review1 = new Review(5, "Awesome game!", user1, game1);
+            Review review2 = new Review(4, "Really fun but too short.", user1, game2);
+            Review review3 = new Review(3, "Decent RPG experience.", user2, game2);
+
+            user1.getReviews().add(review1);
+            user1.getReviews().add(review2);
+            user2.getReviews().add(review3);
+
+            game1.getReviews().add(review1);
+            game2.getReviews().add(review2);
+            game2.getReviews().add(review3);
+
+            dao.createUser(user1);
+            dao.createUser(user2);
+        } catch (Exception e) {
+            System.err.println(e);
+        }
 
         // menu options:
         // 1. show all games
@@ -66,72 +125,11 @@ public class Client {
                 System.err.println("Pick one of the options presented");
             }
         }
-
     }
 
-    private static void createTestData(EntityTransaction tx, EntityManager em) {
-        try {
-            tx.begin();
-
-            // Create Users
-            AppUser user1 = new AppUser();
-            user1.setUsername("gamer123");
-            user1.setEmail("gamer123@example.com");
-            user1.setPassword("securepass");
-
-            AppUser user2 = new AppUser();
-            user2.setUsername("proplayer");
-            user2.setEmail("proplayer@example.com");
-            user2.setPassword("propass");
-
-            // Create Games
-            Game game1 = new Game();
-            game1.setTitle("Space Battle");
-            game1.setGenre("Action");
-            game1.setDeveloper("Galactic Games");
-
-            Game game2 = new Game();
-            game2.setTitle("Mystic Quest");
-            game2.setGenre("RPG");
-            game2.setDeveloper("Fantasy Forge");
-
-            // Add games to users' libraries
-            user1.getLibrary().add(game1);
-            user1.getLibrary().add(game2);
-            user2.getLibrary().add(game2);
-
-            game1.getUsers().add(user1);
-            game2.getUsers().add(user1);
-            game2.getUsers().add(user2);
-
-            // Create Reviews
-            Review review1 = new Review(5, "Awesome game!", user1, game1);
-            Review review2 = new Review(4, "Really fun but too short.", user1, game2);
-            Review review3 = new Review(3, "Decent RPG experience.", user2, game2);
-
-            user1.getReviews().add(review1);
-            user1.getReviews().add(review2);
-            user2.getReviews().add(review3);
-
-            game1.getReviews().add(review1);
-            game2.getReviews().add(review2);
-            game2.getReviews().add(review3);
-
-            // Persist data
-            em.persist(user1);
-            em.persist(user2);
-
-            // Since reviews and games are cascaded, they will be persisted too
-
-            tx.commit();
-        } catch (Exception e) {
-            if (tx.isActive()) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            em.close();
-            emf.close();
-        }
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Client client = context.getBean(Client.class);
+        client.run();
     }
 }

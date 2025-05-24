@@ -24,7 +24,11 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             throw new UserNotFoundException();
         }
+    }
 
+    @Override
+    public void addUser(AppUser user) {
+        userDao.createUser(user);
     }
 
 }

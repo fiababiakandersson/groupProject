@@ -17,23 +17,23 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     // review dao
     @Override
     public List<Review> allReviews() {
-        return em.createQuery("select review from Review as review", Review.class).getResultList();
+        return this.em.createQuery("select review from Review as review", Review.class).getResultList();
     }
 
     @Override
     public void createReview(Review newReview) {
-        em.persist(newReview);
+        this.em.persist(newReview);
     }
 
     @Override
     public void deleteReview(Review review) {
-        Review book = em.find(Review.class, review.getId());
-        em.remove(book);
+        Review book = this.em.find(Review.class, review.getId());
+        this.em.remove(book);
     }
 
     @Override
     public void updateReviewById(int id, Review review) throws ReviewNotFoundException {
-        Review existingReview = em.find(Review.class, id);
+        Review existingReview = this.em.find(Review.class, id);
         if (existingReview == null) {
             throw new ReviewNotFoundException();
         }
@@ -45,13 +45,13 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     // game dao
     @Override
     public List<Game> allGames() {
-        return em.createQuery("select game from Game as game", Game.class).getResultList();
+        return this.em.createQuery("select game from Game as game", Game.class).getResultList();
     }
 
     @Override
     public Game findGameById(int id) throws GameNotFoundException {
         try {
-            return (Game) em.createQuery("select game from Game as game where game.id=:id").setParameter("id", id)
+            return (Game) this.em.createQuery("select game from Game as game where game.id=:id").setParameter("id", id)
                     .getSingleResult();
         } catch (javax.persistence.NoResultException e) {
             throw new GameNotFoundException();
@@ -62,11 +62,17 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     @Override
     public AppUser findUserById(int id) throws UserNotFoundException {
         try {
-            return (AppUser) em.createQuery("select user from User as user where user.id=:id").setParameter("id", id)
+            return (AppUser) this.em.createQuery("select user from User as user where user.id=:id")
+                    .setParameter("id", id)
                     .getSingleResult();
         } catch (javax.persistence.NoResultException e) {
             throw new UserNotFoundException();
         }
+    }
+
+    @Override
+    public void createUser(AppUser newUser) {
+        this.em.persist(newUser);
     }
 
 }

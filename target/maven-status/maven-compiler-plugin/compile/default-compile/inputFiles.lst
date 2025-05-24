@@ -1,0 +1,17 @@
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\client\Client.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\data\DaoJpaImpl.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\data\GameDao.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\data\ReviewDao.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\data\UserDao.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\domain\AppUser.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\domain\Game.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\domain\Review.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\exception\GameNotFoundException.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\exception\ReviewNotFoundException.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\exception\UserNotFoundException.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\services\GameService.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\services\GameServiceImpl.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\services\ReviewService.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\services\ReviewServiceImpl.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\services\UserService.java
+C:\Users\Fia\Desktop\courses\Backend\Inlämningar\groupProject\src\main\java\se\yrgo\services\UserServiceImpl.java

@@ -29,6 +29,13 @@
             <version>5.3.28</version>
         </dependency>
 
+        <!-- Spring Transaction (contains org.springframework.transaction) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>5.3.28</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core-jakarta -->
         <dependency>
             <groupId>org.hibernate</groupId>
