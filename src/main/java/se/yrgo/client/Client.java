@@ -2,8 +2,7 @@ package se.yrgo.client;
 
 import java.util.*;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.*;
 
 import se.yrgo.domain.Game;
 import se.yrgo.domain.Review;
@@ -18,7 +17,7 @@ import se.yrgo.services.UserService;
 public class Client {
 
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         GameService gameService = context.getBean(GameService.class);
         UserService userService = context.getBean(UserService.class);
@@ -156,6 +155,7 @@ public class Client {
         }
 
         input.close();
+        context.close();
 
     }
 }

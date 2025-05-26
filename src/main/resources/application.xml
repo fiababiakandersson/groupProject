@@ -2,21 +2,44 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
-         http://www.springframework.org/schema/beans 
-         http://www.springframework.org/schema/beans/spring-beans.xsd
-         http://www.springframework.org/schema/context 
-         http://www.springframework.org/schema/context/spring-context.xsd">
+           http://www.springframework.org/schema/beans 
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           https://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx 
+           https://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- search for @Repository, @Service, @Component -->
+    
     <context:component-scan base-package="se.yrgo" />
 
-    <!-- connect to persistence unit from persistence.xml or hibernate.cfg.xml -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="databaseConfig" />
+    
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+        <property name="url" value="jdbc:derby://localhost:50000/hibernate" />
+        
     </bean>
 
-    <!-- make @PersistenceContext possible -->
-    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+    
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="se.yrgo.domain" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
 
+    
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+    
+    <tx:annotation-driven />
 </beans>
