@@ -2,10 +2,9 @@ package se.yrgo.data;
 
 import java.util.*;
 
-import javax.persistence.*;
-
 import org.springframework.stereotype.*;
 
+import jakarta.persistence.*;
 import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 
@@ -28,7 +27,7 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
 
     @Override
     public void deleteReview(Review review) {
-       Review toDelete = em.find(Review.class, review.getId());
+        Review toDelete = em.find(Review.class, review.getId());
         if (toDelete != null)
             em.remove(toDelete);
     }
@@ -53,7 +52,7 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
         try {
             return (Game) em.createQuery("select game from Game as game where game.id=:id").setParameter("id", id)
                     .getSingleResult();
-        } catch (javax.persistence.NoResultException e) {
+        } catch (Exception e) {
             throw new GameNotFoundException();
         }
     }
@@ -64,7 +63,7 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
         try {
             return (User) em.createQuery("select user from User as user where user.id=:id").setParameter("id", id)
                     .getSingleResult();
-        } catch (javax.persistence.NoResultException e) {
+        } catch (Exception e) {
             throw new UserNotFoundException();
         }
     }

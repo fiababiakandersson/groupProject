@@ -18,15 +18,15 @@ Alla data lagras i en relationsdatabas (Apache Derby) och hanteras via JPA och H
 
 ## Teknikanvändning
 
-| Teknik         | Användning |
-|----------------|------------|
-| Java 17        | Programmering |
-| Spring Framework | Dependency Injection, konfiguration |
-| JPA (`javax.persistence`) | Objekt–relational mapping |
-| Hibernate 5.6.x | JPA-implementation |
-| Apache Derby   | Databas |
-| Maven          | Byggverktyg |
-| SLF4J          | Loggning |
+| Teknik                    | Användning                          |
+| ------------------------- | ----------------------------------- |
+| Java 17                   | Programmering                       |
+| Spring Framework          | Dependency Injection, konfiguration |
+| JPA (`javax.persistence`) | Objekt–relational mapping           |
+| Hibernate 5.6.x           | JPA-implementation                  |
+| Apache Derby              | Databas                             |
+| Maven                     | Byggverktyg                         |
+| SLF4J                     | Loggning                            |
 
 ---
 
@@ -52,5 +52,6 @@ README.md
 ## Kör projektet
 
 ### Förutsättningar
+
 - Java 17+
 - Maven 3+

@@ -1,0 +1,17 @@
+se\yrgo\services\ReviewServiceImpl.class
+se\yrgo\client\Client.class
+se\yrgo\services\GameServiceImpl.class
+se\yrgo\services\UserService.class
+se\yrgo\domain\User.class
+se\yrgo\exception\GameNotFoundException.class
+se\yrgo\services\GameService.class
+se\yrgo\services\ReviewService.class
+se\yrgo\services\UserServiceImpl.class
+se\yrgo\exception\ReviewNotFoundException.class
+se\yrgo\data\ReviewDao.class
+se\yrgo\data\DaoJpaImpl.class
+se\yrgo\data\GameDao.class
+se\yrgo\domain\Game.class
+se\yrgo\data\UserDao.class
+se\yrgo\domain\Review.class
+se\yrgo\exception\UserNotFoundException.class
