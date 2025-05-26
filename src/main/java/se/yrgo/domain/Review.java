@@ -2,12 +2,11 @@ package se.yrgo.domain;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int rating; // 1 to 5

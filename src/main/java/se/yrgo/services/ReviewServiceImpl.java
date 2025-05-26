@@ -3,24 +3,17 @@ package se.yrgo.services;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
 import se.yrgo.data.*;
 import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 
+@Service
 public class ReviewServiceImpl implements ReviewService {
 
-    private final ReviewDao reviewDao;
-
     @Autowired
-    public ReviewServiceImpl(ReviewDao reviewDao) {
-        this.reviewDao = reviewDao;
-    }
-
-    @Override
-    public List<Review> getAllReviews() {
-        return reviewDao.allReviews();
-    }
+    private ReviewDao reviewDao;
 
     @Override
     public void addReview(Review review) {
@@ -39,6 +32,12 @@ public class ReviewServiceImpl implements ReviewService {
         } catch (Exception e) {
             throw new ReviewNotFoundException();
         }
+    }
+
+    @Override
+    public List<Review> getAllReviews() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllReviews'");
     }
 
 }

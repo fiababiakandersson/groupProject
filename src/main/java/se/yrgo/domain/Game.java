@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Game {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String title;
@@ -18,19 +18,18 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews = new HashSet<>();
 
-    @ManyToMany(mappedBy = "library")
-    private Set<User> users = new HashSet<>();
+    // @ManyToMany(mappedBy = "library")
+    // private Set<User> users = new HashSet<>();
 
     public Game() {
 
     }
 
-    public Game(String title, String genre, String developer, Set<Review> reviews, Set<User> users) {
+    public Game(String title, String genre, String developer) {
         this.title = title;
         this.genre = genre;
         this.developer = developer;
-        this.reviews = reviews;
-        this.users = users;
+        // this.users = users;
     }
 
     public int getId() {
@@ -73,11 +72,17 @@ public class Game {
         this.reviews = reviews;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    @Override
+    public String toString() {
+        return "Game [id=" + id + ", title=" + title + ", genre=" + genre + ", developer=" + developer + ", reviews="
+                + reviews + "]";
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+    // public Set<User> getUsers() {
+    // return users;
+    // }
+
+    // public void setUsers(Set<User> users) {
+    // this.users = users;
+    // }
 }

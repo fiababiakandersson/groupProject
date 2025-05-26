@@ -9,15 +9,11 @@ import se.yrgo.data.*;
 import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 
-@Service
+@Service("gameService")
 public class GameServiceImpl implements GameService {
 
-    private final GameDao gameDao;
-
     @Autowired
-    public GameServiceImpl(GameDao gameDao) {
-        this.gameDao = gameDao;
-    }
+    private GameDao gameDao;
 
     @Override
     public List<Game> getAllGames() {
