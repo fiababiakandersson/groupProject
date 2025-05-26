@@ -1,6 +1,7 @@
 package se.yrgo.domain;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 
 @Entity
 public class Review {

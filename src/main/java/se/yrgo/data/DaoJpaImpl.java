@@ -2,9 +2,10 @@ package se.yrgo.data;
 
 import java.util.*;
 
+import javax.persistence.*;
+
 import org.springframework.stereotype.*;
 
-import jakarta.persistence.*;
 import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 

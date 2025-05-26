@@ -2,7 +2,7 @@ package se.yrgo.domain;
 
 import java.util.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class User {
