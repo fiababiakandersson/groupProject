@@ -4,20 +4,14 @@ import java.util.*;
 
 import org.springframework.context.support.*;
 
-import se.yrgo.domain.Game;
-import se.yrgo.domain.Review;
-import se.yrgo.domain.User;
-import se.yrgo.exception.GameNotFoundException;
-import se.yrgo.exception.ReviewNotFoundException;
-import se.yrgo.exception.UserNotFoundException;
-import se.yrgo.services.GameService;
-import se.yrgo.services.ReviewService;
-import se.yrgo.services.UserService;
+import se.yrgo.domain.*;
+import se.yrgo.exception.*;
+import se.yrgo.services.*;
 
 public class Client {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 
         GameService gameService = context.getBean(GameService.class);
         UserService userService = context.getBean(UserService.class);
@@ -57,7 +51,7 @@ public class Client {
 
                 switch (pick) {
                     case 1:
-                        
+
                         List<Game> games = gameService.getAllGames();
                         for (Game g : games) {
                             System.out.println("Game: " + g.getTitle() + " | Genre: " + g.getGenre());
@@ -65,7 +59,7 @@ public class Client {
                         break;
 
                     case 2:
-                        
+
                         System.out.print("Enter game ID: ");
                         int gameId = input.nextInt();
                         input.nextLine();
@@ -83,7 +77,7 @@ public class Client {
                         break;
 
                     case 3:
-                        
+
                         System.out.print("Enter your user ID: ");
                         int userId = input.nextInt();
                         input.nextLine();
@@ -108,7 +102,7 @@ public class Client {
                         break;
 
                     case 4:
-                        
+
                         System.out.print("Enter review ID to delete: ");
                         int reviewIdToDelete = input.nextInt();
                         input.nextLine();
@@ -119,7 +113,7 @@ public class Client {
                         break;
 
                     case 5:
-                        
+
                         System.out.print("Enter review ID to update: ");
                         int reviewId = input.nextInt();
                         input.nextLine();
@@ -147,7 +141,7 @@ public class Client {
 
             } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid number.");
-                input.nextLine(); 
+                input.nextLine();
             } catch (Exception e) {
                 System.out.println("Unexpected error: " + e.getMessage());
             }
