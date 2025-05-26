@@ -15,9 +15,6 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Review> reviews = new HashSet<>();
-
     @ManyToMany
     @JoinTable(name = "user_game_library", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
     private Set<Game> library = new HashSet<>();
@@ -26,11 +23,11 @@ public class User {
 
     }
 
-    public User(String username, String email, String password, Set<Review> reviews, Set<Game> library) {
+    public User(String username, String email, String password, Set<Game> library) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.reviews = reviews;
+        
         this.library = library;
     }
 
@@ -65,14 +62,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Set<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Set<Review> reviews) {
-        this.reviews = reviews;
-    }
+    
 
     public Set<Game> getLibrary() {
         return library;
