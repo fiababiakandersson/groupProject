@@ -24,7 +24,6 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
         return em.createQuery("select review from Review as review", Review.class).getResultList();
     }
 
-    
     @Override
     public void createReview(Review newReview) {
         em.persist(newReview);
@@ -46,6 +45,11 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     // // TODO Auto-generated method stub
 
     // }
+
+    @Override
+    public Review findReviewById(int id) {
+        return em.find(Review.class, id);
+    }
 
     @Override
     public void deleteReview(Review review) {

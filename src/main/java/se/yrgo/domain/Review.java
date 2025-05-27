@@ -67,4 +67,8 @@ public class Review {
         return "Review [id=" + id + ", rating=" + rating + ", comment=" + comment + ", user=" + user + ", game="
                 + "]";
     }
+
+    public Game getGame() {
+    return game;
+}
 }

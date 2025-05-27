@@ -34,10 +34,20 @@ public class ReviewServiceImpl implements ReviewService {
         }
     }
 
-    // @Override
-    // public List<Review> getAllReviews() {
-    //     // TODO Auto-generated method stub);
-      
-    // }
+    @Override
+    public Review getReviewById(int id) throws ReviewNotFoundException {
+        Review r = reviewDao.findReviewById(id);
+        if (r == null) {
+            throw new ReviewNotFoundException();
+        }
+        return r;
+    }
+
+    @Override
+    public List<Review> getAllReviews() {
+        return reviewDao.allReviews();
+    }
+
+    
 
 }

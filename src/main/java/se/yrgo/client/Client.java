@@ -39,6 +39,7 @@ public class Client {
                     System.out.println("[3] Write a review");
                     System.out.println("[4] Remove a review");
                     System.out.println("[5] Update a review");
+                    System.out.println("[6] Show all review");
 
                     try {
                         int pick = input.nextInt();
@@ -74,7 +75,6 @@ public class Client {
                                     System.out.println("Game not found.");
                                 }
                                 break;
-            
 
                             case 3:
 
@@ -94,6 +94,7 @@ public class Client {
                                     User user = userService.getUserById(userId);
                                     Game gameToReview = gameService.getGameById(gameIdForReview);
                                     Review review = new Review(rating, comment, user, gameToReview);
+                                    gameToReview.getReviews().add(review);
                                     reviewService.addReview(review);
                                     System.out.println("Review added.");
                                 } catch (UserNotFoundException | GameNotFoundException e) {
@@ -106,10 +107,14 @@ public class Client {
                                 System.out.print("Enter review ID to delete: ");
                                 int reviewIdToDelete = input.nextInt();
                                 input.nextLine();
-                                Review reviewToDelete = new Review();
-                                reviewToDelete.setId(reviewIdToDelete);
-                                reviewService.deleteReview(reviewToDelete);
-                                System.out.println("Review deleted.");
+
+                                try {
+                                    Review reviewToDelete = reviewService.getReviewById(reviewIdToDelete);
+                                    reviewService.deleteReview(reviewToDelete);
+                                    System.out.println("Review deleted.");
+                                } catch (ReviewNotFoundException e) {
+                                    System.out.println("Review not found.");
+                                }
                                 break;
 
                             case 5:
@@ -117,21 +122,33 @@ public class Client {
                                 System.out.print("Enter review ID to update: ");
                                 int reviewId = input.nextInt();
                                 input.nextLine();
+
                                 System.out.print("New rating (1-5): ");
                                 int newRating = input.nextInt();
                                 input.nextLine();
+
                                 System.out.print("New comment: ");
                                 String newComment = input.nextLine();
 
-                                Review updatedReview = new Review();
-                                updatedReview.setRating(newRating);
-                                updatedReview.setComment(newComment);
-
                                 try {
-                                    reviewService.updateReview(reviewId, updatedReview);
+                                    Review existingReview = reviewService.getReviewById(reviewId);
+                                    existingReview.setRating(newRating);
+                                    existingReview.setComment(newComment);
+                                    reviewService.updateReview(reviewId, existingReview);
                                     System.out.println("Review updated.");
                                 } catch (ReviewNotFoundException e) {
                                     System.out.println("Review not found.");
+                                }
+                                break;
+
+                            case 6:
+                                List<Review> allReviews = reviewService.getAllReviews();
+                                for (Review r : allReviews) {
+                                    String gameTitle = (r.getGame() != null) ? r.getGame().getTitle() : "okänt spel";
+                                    String userName = (r.getUser() != null) ? r.getUser().getUsername()
+                                            : "okänd användare";
+                                    System.out.println("[ID: " + r.getId() + "] " + r.getRating() + "/5 - \""
+                                            + r.getComment() + "\" (" + gameTitle + ", " + userName + ")");
                                 }
                                 break;
 
