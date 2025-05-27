@@ -9,7 +9,7 @@ import se.yrgo.data.*;
 import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 
-@Service("gameService")
+@Service
 public class GameServiceImpl implements GameService {
 
     @Autowired
@@ -23,5 +23,10 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game getGameById(int id) throws GameNotFoundException {
         return gameDao.findGameById(id);
+    }
+
+    @Override
+    public void addGame(Game game) {
+        gameDao.createGame(game);
     }
 }

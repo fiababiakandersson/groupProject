@@ -9,4 +9,6 @@ public interface GameDao {
     public List<Game> allGames();
 
     public Game findGameById(int id) throws GameNotFoundException;
+
+    public void createGame(Game game);
 }

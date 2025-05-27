@@ -5,4 +5,6 @@ import se.yrgo.exception.*;
 
 public interface UserDao {
     public User findUserById(int id) throws UserNotFoundException;
+
+    public void createUser(User user);
 }

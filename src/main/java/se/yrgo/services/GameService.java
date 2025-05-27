@@ -9,4 +9,6 @@ public interface GameService {
     List<Game> getAllGames();
 
     Game getGameById(int id) throws GameNotFoundException;
+
+    void addGame(Game game);
 }

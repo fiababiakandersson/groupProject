@@ -5,4 +5,6 @@ import se.yrgo.exception.*;
 
 public interface UserService {
     public User getUserById(int id) throws UserNotFoundException;
+
+    public void addUser(User user);
 }

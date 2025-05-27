@@ -3,6 +3,7 @@ package se.yrgo.data;
 import java.util.*;
 
 import javax.persistence.*;
+import javax.transaction.*;
 
 import org.springframework.stereotype.*;
 
@@ -10,12 +11,13 @@ import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 
 @Repository
+@Transactional
 public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
 
     @PersistenceContext
     private EntityManager em;
 
-    // review dao
+    
     @Override
     public List<Review> allReviews() {
         return em.createQuery("select review from Review as review", Review.class).getResultList();
@@ -58,6 +60,11 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
         }
     }
 
+    @Override
+    public void createGame(Game game) {
+        em.persist(game);
+    }
+
     // user dao
     @Override
     public User findUserById(int id) throws UserNotFoundException {
@@ -67,6 +74,11 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
         } catch (Exception e) {
             throw new UserNotFoundException();
         }
+    }
+
+    @Override
+    public void createUser(User user) {
+        em.persist(user);
     }
 
 }
