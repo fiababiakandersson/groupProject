@@ -1,5 +1,7 @@
 package se.yrgo.services;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -12,6 +14,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.allUsers();
+    }
 
     @Override
     public User getUserById(int id) throws UserNotFoundException {

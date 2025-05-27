@@ -15,11 +15,8 @@ public class Game {
     private String genre;
     private String developer;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "game")
     private Set<Review> reviews = new HashSet<>();
-
-    // @ManyToMany(mappedBy = "library")
-    // private Set<User> users = new HashSet<>();
 
     public Game() {
 
@@ -29,7 +26,6 @@ public class Game {
         this.title = title;
         this.genre = genre;
         this.developer = developer;
-        // this.users = users;
     }
 
     public int getId() {

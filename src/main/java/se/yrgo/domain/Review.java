@@ -17,7 +17,6 @@ public class Review {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
     public Review() {
@@ -63,11 +62,9 @@ public class Review {
         this.user = user;
     }
 
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
+    @Override
+    public String toString() {
+        return "Review [id=" + id + ", rating=" + rating + ", comment=" + comment + ", user=" + user + ", game="
+                + "]";
     }
 }

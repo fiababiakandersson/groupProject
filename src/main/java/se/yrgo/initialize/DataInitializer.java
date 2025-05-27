@@ -29,8 +29,8 @@ public class DataInitializer {
         gameDao.createGame(game1);
         gameDao.createGame(game2);
 
-        User user1 = new User("Viggo", "viggo@example.com", "pass123", new HashSet<>());
-        User user2 = new User("Fia", "fia@example.com", "bobpass", new HashSet<>());
+        User user1 = new User("Viggo", "viggo@yrgo.se", "sigma123", new HashSet<>());
+        User user2 = new User("Fia", "fia@yrgo.se", "yrgo123", new HashSet<>());
 
         user1.getLibrary().add(game1);
         user2.getLibrary().add(game2);
@@ -38,8 +38,9 @@ public class DataInitializer {
         userDao.createUser(user1);
         userDao.createUser(user2);
 
-        Review review1 = new Review(9, "Fantastiskt spel med djup lore.", user1, game1);
+        Review review1 = new Review(9, "Spel med lore", user1, game1);
         Review review2 = new Review(8, "Rogivande och beroendeframkallande.", user2, game2);
+
 
         reviewDao.createReview(review1);
         reviewDao.createReview(review2);

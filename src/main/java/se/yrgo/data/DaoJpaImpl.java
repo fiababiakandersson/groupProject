@@ -17,16 +17,35 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     @PersistenceContext
     private EntityManager em;
 
-    
+    // reviews
+
     @Override
     public List<Review> allReviews() {
         return em.createQuery("select review from Review as review", Review.class).getResultList();
     }
 
+    
     @Override
     public void createReview(Review newReview) {
         em.persist(newReview);
     }
+
+    // @Transactional
+    // @Override
+    // public void setGameReview(Review newReview, int gameId) {
+    // Game existing = em.find(Game.class, gameId);
+    // if (existing == null)
+    // System.err.println("oj");
+    // existing.getReviews().add(newReview);
+
+    // em.persist(newReview);
+    // }
+
+    // @Override
+    // public void createReview(Review review) {
+    // // TODO Auto-generated method stub
+
+    // }
 
     @Override
     public void deleteReview(Review review) {
@@ -36,12 +55,14 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     }
 
     @Override
-    public void updateReviewById(int id, Review review) throws ReviewNotFoundException {
-        Review existing = em.find(Review.class, id);
-        if (existing == null)
-            throw new ReviewNotFoundException();
-        existing.setRating(review.getRating());
-        existing.setComment(review.getComment());
+    public void updateReviewById(int id, Review updatedReview) throws ReviewNotFoundException {
+        em.merge(updatedReview);
+
+        // Review existing = em.find(Review.class, id);
+        // if (existing == null)
+        // throw new ReviewNotFoundException();
+        // existing.setRating(review.getRating());
+        // existing.setComment(review.getComment());
     }
 
     // game dao
@@ -79,6 +100,11 @@ public class DaoJpaImpl implements GameDao, UserDao, ReviewDao {
     @Override
     public void createUser(User user) {
         em.persist(user);
+    }
+
+    @Override
+    public List<User> allUsers() {
+        return em.createQuery("select user from User as user", User.class).getResultList();
     }
 
 }

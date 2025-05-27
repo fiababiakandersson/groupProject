@@ -8,7 +8,7 @@ import se.yrgo.exception.*;
 public interface ReviewDao {
     public List<Review> allReviews();
 
-    public void createReview(Review review);
+    public void createReview(Review newReview);
 
     public void deleteReview(Review review);
 

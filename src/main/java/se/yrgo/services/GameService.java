@@ -11,4 +11,5 @@ public interface GameService {
     Game getGameById(int id) throws GameNotFoundException;
 
     void addGame(Game game);
+
 }

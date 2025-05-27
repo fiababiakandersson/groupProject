@@ -6,9 +6,11 @@ import se.yrgo.domain.*;
 import se.yrgo.exception.*;
 
 public interface GameDao {
-    public List<Game> allGames();
+  public List<Game> allGames();
 
-    public Game findGameById(int id) throws GameNotFoundException;
+  public Game findGameById(int id) throws GameNotFoundException;
 
-    public void createGame(Game game);
+  public void createGame(Game review);
+
+  // public void createReview(Review review, int id);
 }

@@ -34,10 +34,10 @@ public class ReviewServiceImpl implements ReviewService {
         }
     }
 
-    @Override
-    public List<Review> getAllReviews() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllReviews'");
-    }
+    // @Override
+    // public List<Review> getAllReviews() {
+    //     // TODO Auto-generated method stub);
+      
+    // }
 
 }

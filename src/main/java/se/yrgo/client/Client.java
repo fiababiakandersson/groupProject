@@ -22,12 +22,17 @@ public class Client {
             UserService userService = context.getBean(UserService.class);
             ReviewService reviewService = context.getBean(ReviewService.class);
 
-            gameService.addGame(new Game("Skate 3", "Sport", "Skate Dev"));
+            // test adding game
+            gameService.addGame(new Game("Skate 3", "Sport", "Blackbox"));
 
             try (Scanner input = new Scanner(System.in)) {
 
                 while (true) {
 
+                    System.out.println("");
+                    for (User u : userService.getAllUsers()) {
+                        System.out.println("Hello " + u.getUsername() + "! " + " | UserId: " + u.getId());
+                    }
                     System.out.println("Welcome to Gamereview.com:");
                     System.out.println("[1] Show all games");
                     System.out.println("[2] Show game details");
@@ -47,7 +52,8 @@ public class Client {
 
                                 List<Game> games = gameService.getAllGames();
                                 for (Game g : games) {
-                                    System.out.println("Game: " + g.getTitle() + " | Genre: " + g.getGenre());
+                                    System.out.println("Game: " + g.getTitle() + " | Genre: " + g.getGenre() + " | Id: "
+                                            + g.getId());
                                 }
                                 break;
 
@@ -55,7 +61,7 @@ public class Client {
 
                                 System.out.print("Enter game ID: ");
                                 int gameId = input.nextInt();
-                                input.nextLine();
+                                input.nextLine().trim();
                                 try {
                                     Game game = gameService.getGameById(gameId);
                                     System.out.println("Title: " + game.getTitle());
@@ -68,6 +74,7 @@ public class Client {
                                     System.out.println("Game not found.");
                                 }
                                 break;
+            
 
                             case 3:
 
@@ -148,4 +155,5 @@ public class Client {
         }
 
     }
+
 }
