@@ -2,3 +2,5 @@
 *.dat
 *.lck
 *.log
+*.properties
+*.script
