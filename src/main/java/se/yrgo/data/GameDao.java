@@ -12,5 +12,4 @@ public interface GameDao {
 
   public void createGame(Game review);
 
-  // public void createReview(Review review, int id);
 }
