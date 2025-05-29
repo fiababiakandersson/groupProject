@@ -34,6 +34,7 @@ public class Client {
                         System.out.println("Hello " + u.getUsername() + "! " + " | UserId: " + u.getId());
                     }
                     System.out.println("Welcome to Gamereview.com:");
+                    System.out.println("[0] Quit");
                     System.out.println("[1] Show all games");
                     System.out.println("[2] Show game details");
                     System.out.println("[3] Write a review");

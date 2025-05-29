@@ -11,6 +11,7 @@ Ett Java-projekt som bygger en textbaserad spelrecensionsplattform. Användaren 
 - Lägg till recension
 - Uppdatera recension
 - Ta bort recension
+- Hämta alla recensioner
 
 Alla data lagras i en relationsdatabas (Apache Derby) och hanteras via JPA och Hibernate.
 
@@ -50,6 +51,8 @@ README.md
 ---
 
 ## Kör projektet
+
+- Kör main i Client.java filen under src/main/java/se/yrgo/client
 
 ### Förutsättningar
 
